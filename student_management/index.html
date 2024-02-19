@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="name">
+    <input type="text" placeholder="age">
+    <button onclick="handleAddClick();">추가</button>
+    
+    <ul>
+
+    </ul>
+    <script>
+
+        const studentList = [];
+
+
+        function handleAddClick() {
+            const inputs = document.querySelectorAll("input");
+
+            const student = {
+                name: inputs[0].value,
+                age: inputs[1].value
+            }
+
+            //  studentList = [...studentList,student];// 자기자신 들고와서 스튜던트 들고와서 다시 자기자신ㅇㅔ 추가 -> 값이 studentList 에추가된다
+
+            const studentInfoList = document.querySelector("ul");//ul가지고 오자
+
+            // const newLi = document.createElement("li");// li태그 만들어라 //새로운 주소를 할당받아서 태그를 만들겠다
+            // const studentInfoText = 
+            //     document.createTextNode(`이름:${student.name}/나이:${student.age}`);// 이러한 문자열 하나만드는거
+
+            // const deleteButton = document.createElement("button");
+            // const deleteButtonName = document.createTextNode("삭제");
+
+            // deleteButton.appendChild(deleteButtonName);
+
+
+            // newLi.appendChild(studentInfoText);
+            // newLi.appendChild(deleteButton);
+
+            // studentInfoList.appendChild(newLi);
+            
+            // deleteButton.onclick = () => { //똑같은 값이 있을때 무엇을 삭제해야하는지 
+            //     studentInfoList.removeChild(newLi);// 객체의 주소를 명확히 이해하자 // 주소값들이 들어있다 실제로는
+                //예를 들어 추가 될때 새로운 주소가 생긴다 (100) 그리고 그안에 생긴deleteButton 은 200번의 주소가 생긴다 
+                // 그럼 200번을 지우면 100번이 삭제되라고  명령한다  다시 새로만들면 300 번과  생긴deleteButton 400번의 주소가생긴다
+
+                //근데 지금 까지 코드 한줄로 inner로 작성 가능함
+
+                studentInfoList.innerHTML += `<li>이름: ${student.name} / 나이: ${student.age} <button onclick ="delete-button();">삭제</button></li>`;
+
+                const deleteButtons = document.querySelectorAll(".delete-button");
+
+                for(let i = 0; i< deleteButtons.length; i++) {
+                    deleteButtons[i].onclick = () => {
+                        const li = studentInfoList.querySelectorAll("li") [i]
+                        studentInfoList.removeChild(li);
+                    }
+                }
+                
+            }
+
+
+
+
+
+        // }
+
+        // function StudentInfo({name,age}) {// 학생정보 비할당구조로 들고오게싸
+        //     rtturn `<li></li>
+        // }
+    </script>
+</body>
+</body>
+</html>
